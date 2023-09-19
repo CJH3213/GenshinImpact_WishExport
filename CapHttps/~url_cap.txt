@@ -1,0 +1,1 @@
+https://hk4e-api.mihoyo.com/event/gacha_info/api/getGachaLog?win_mode=fullscreen&。。。先抓包吧

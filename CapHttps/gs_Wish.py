@@ -75,6 +75,19 @@ class GS_Wish:
         new_url = '{}{}'.format(self.m_baseUrl, new_query)
         return new_url
 
+    # 测试url是否有效
+    def isEffective(self):
+        gacha_type = GachaType.CharacterEvent
+        last_page = 1
+        last_id = '0'
+        # 生成对应页码的url
+        new_url = self.getNewUrl(gacha_type=gacha_type.value, page=last_page, end_id=last_id)
+        # 向官方发送请求，保存收到的祈愿记录
+        req = requests.get(new_url)
+        jsObj = json.loads(req.text)
+        gacha_list = jsObj['data']
+        return not gacha_list
+
     # 输入url，获取指定池子记录
     def getGaCha(self, gacha_type):
         total_gacha = []
