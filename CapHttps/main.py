@@ -50,7 +50,7 @@ class Main_Task(Task):
 
 class Install_CA_Task(Task):
     def on_running(self):
-        ca_file = 'C:/Users/CJH01200203/.mitmproxy/mitmproxy-ca.p12'
+        ca_file = os.path.expanduser('~') + '/.mitmproxy/mitmproxy-ca.p12'
         is_exist = os.path.exists(ca_file)
 
         if not is_exist:
@@ -141,6 +141,7 @@ def outPutOnFile(file_path, gacha_list):
             ]
             writer.writerow(row_list)
 
+
 if __name__ == '__main__':
     task_manager = []
 
@@ -151,23 +152,3 @@ if __name__ == '__main__':
         last_task = task_manager[-1]
         last_task.on_running()
         print('---                                        ---')
-
-
-    # sw_mitm = SwitchMitmdump(8888, 'Addons/addons.py')
-
-    # try:
-    #     # sw_mitm.start_listen()
-    #     print('''执行：
-    #         1. 安装CA证书
-    #         2. 启动抓包
-    #         3. 导出数据
-    #     ''')
-    #     input('')
-    #     print('已启动代理，端口8888，请检查是否可以抓取网络……')
-    #
-    #     # 抓取到的url储存到当前路径下txt文本里
-    #     # time.sleep(5.0)
-    #
-    # finally:  # 无论如何最终都要关闭代理，否则会影响到网络正常使用
-    #     pass
-    #     # sw_mitm.close_listen()
